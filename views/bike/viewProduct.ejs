@@ -1,0 +1,36 @@
+    <%- include('../partials/header.ejs')%>
+    <link rel="stylesheet" href="/css/styleviewproduct.css">
+    <title>Document</title>
+    <%- include('../partials/nav.ejs')%>
+    <main class="sell">
+        <%- include('../partials/flash.ejs')%>
+
+
+        <%if(typeof bike !== null){%>
+            <img class="sellimg" src="<%= bike.image %>" alt="<%= bike.title %>">
+            <div class="productInfo">
+                <h2><%= bike.title %></h2>
+                <p><%= bike.condition %></p>
+                <p><%= bike.totalOffers %> Offers</p> 
+                <p>Price: $<%= bike.price %></p>
+                <p>Seller: <%= bike.seller.firstName + ' ' + bike.seller.lastName %></p>    
+                <p><%= bike.details %></p>
+                <% if (bike.active && bike.highestOffer > 0) { %>
+                  <p>Highest Offer: $<%= bike.highestOffer %></p>
+                <% } %>
+                <% if (bike.active) { %>
+                  <form action="/bike/<%=bike.id%>/offer/make" method="POST">
+                    <input type="hidden" name="itemId" value="<%= bike._id %>">
+                    <input type="number" name="amount" placeholder="Enter your offer amount" required>
+                    <button type="submit">Make an Offer</button>
+                  </form>
+                <% } else { %>
+                  <p class="alert">Unfortunately this bike is no longer available.</p>
+                <% } %>
+            </div>
+
+        <%}%>
+
+    </main>
+    <%- include('../partials/footer.ejs')%>
+

@@ -1,0 +1,59 @@
+<%- include('../partials/header.ejs')%>
+
+    <link rel="stylesheet" href="/css/stylenew.css">
+    <title>Browse</title>
+    <%- include('../partials/nav.ejs')%>
+
+    <main class="new">
+        <%- include('../partials/flash.ejs')%>
+
+
+        <div class="newtextdiv">
+            <div class="newh1">
+                <h1>SELL AT BIKE BAZAAR</h1>
+            </div>
+            <div class="newp"> 
+                <p>Simply taking a picture with your phone and creating a listing in less than a minute!</p>
+            </div>
+        </div>
+
+        <form class="product-form" action = '/bike' method = 'POST' enctype="multipart/form-data">
+    
+            <div class="form-group">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" id="title" name="title" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="condition" class="form-label">Condition:</label>
+                <select id="condition" name="condition" class="form-input">
+                    <option value="New">New</option>
+                    <option value="Used">Used</option>
+                    <option value="Parts Only">Parts only</option>
+                    <option value="Like New">Like New</option>
+                    <option value="Fair">Fair</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="price" class="form-label">Price:</label>
+                <input type="text" id="price" name="price" class="form-input" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="details" class="form-label">Details:</label>
+                <input type="text" id="details" name="details" class="form-input" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="image" class="form-label">Image:</label>
+                <input type="file" id="image" name="image" class="form-input" accept="image/*" required>
+            </div>
+
+    
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+
+        
+    </main>
+    <%- include('../partials/footer.ejs')%>

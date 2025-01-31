@@ -1,0 +1,26 @@
+
+<% if (errorMessages.length > 0) { %>
+    <% errorMessages.forEach(message => { %>
+        <div class="flash-message error">
+            <%= message %>
+            <button class="close-btn">&times;</button>
+        </div>
+    <% }); %>
+<% } %>
+
+<% if (successMessages.length > 0) { %>
+    <% successMessages.forEach(message => { %>
+        <div class="flash-message success">
+            <%= message %>
+            <button class="close-btn">&times;</button>
+        </div>
+    <% }); %>
+<% } %>
+
+<script>
+    document.querySelectorAll('.close-btn').forEach(button => {
+        button.onclick = function() {
+            this.parentElement.style.display = 'none';
+        }
+    });
+</script>

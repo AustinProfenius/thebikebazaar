@@ -1,0 +1,47 @@
+
+<%- include('../partials/header.ejs')%>
+    <link rel="stylesheet" href="/css/styleprofile.css">
+    <title>offers</title>
+<%- include('../partials/nav.ejs')%>
+        <div class = "profile">
+            <%- include('../partials/flash.ejs')%>
+
+            <main>
+
+            <h3>My Offers</h3>
+            <% if (offers.length) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th class="status-action-column">Amount</th>
+                            <th class="status-action-column">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% offers.forEach(offer => { %>
+                            <tr>
+                                <td><a href="/bike/<%= offer.item.id %>"><%= offer.user.firstName %> <%= offer.user.lastName %></a></td>
+                                <td>$<%= offer.amount %></td>
+                                <td>
+                                    <% if (offer.item.active) { %>
+                                    <form method="POST" action="/bike/<%= offer.item.id %>/offer/<%= offer.id %>?_method=PUT" class="form-inline">
+                                        <button type="submit" >
+                                            Accept
+                                        </button>
+                                    </form>
+                                    <% } else {%>
+                                        <p><%= offer.status %></p>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p>You have not made any offers</p>
+            <% } %>
+        </div>
+    </main>
+
+<%- include('../partials/footer.ejs')%>

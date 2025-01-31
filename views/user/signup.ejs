@@ -1,0 +1,47 @@
+<%- include('../partials/header.ejs')%>
+<link rel="stylesheet" href="/css/stylenew.css">
+    <title>sign up</title>
+    <%- include('../partials/nav.ejs')%>
+<main class="new">
+    <%- include('../partials/flash.ejs')%>
+
+
+
+    <div class="newtextdiv">
+        <div class="newh1">
+            <h1>BUY AND SELL AT BIKE BAZAAR</h1>
+        </div>
+        <div class="newp"> 
+            <p>Join our bike selling community at Bike Bazaar!</p>
+        </div>
+    </div>
+
+    <form class="product-form" action = '/users' method = 'POST'>
+
+        <div class="form-group">
+            <label for="firstName" class="form-label">First Name:</label>
+            <input type="text" id="firstName" name="firstName" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName" class="form-label">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" name="password" class="form-input" minlength="8" required>
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+
+
+
+
+</main>
+<%- include('../partials/footer.ejs')%>

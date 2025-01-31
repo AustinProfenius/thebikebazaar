@@ -1,0 +1,38 @@
+</head>
+<body>
+    <header>
+        <a href="/"><img class="logo" src="/images/logo.png" alt="Bike Bazaar logo"></a>
+        
+        <div class="wrap">
+            <div class="search">
+                <form action="/bike/search" class="searchform">
+                    <input type="text" class="searchTerm" id="query" name="query" placeholder="What are you looking for?">
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="navBar">
+            <nav>
+                <ul>
+                    <li><a class="navButton" href="/bike">Browse</a></li>
+                    <li><a class="navButton" href="/bike/new">Sell</a></li>
+                    <%if(!user){%>
+                        <li><a class="navButton" href='/users/new'>Sign Up</a></li>
+                        <li><a class="navButton" href='/users/login'>Login</a></li>
+                    <%} else {%>
+                        <li><a class="navButton" href='/users/profile'>Profile</a></li>
+                        <li><a class="navButton" href='/users/logout'>Logout</a></li>
+                    <%}%>
+                </ul>
+            </nav>
+        </div>
+        <div id="burgerBtn" class="hamburger-btn">
+            <span class="bar"></span>
+            <span class="bar"></span>  
+            <span class="bar"></span>
+        </div>
+    </header>
+

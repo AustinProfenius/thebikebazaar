@@ -1,0 +1,33 @@
+<%- include('../partials/header.ejs')%>
+    <link rel="stylesheet" href="/css/styleproducts.css">
+    <title>Browse</title>
+<%- include('../partials/nav.ejs')%>
+    <main class="browse">
+        <%- include('../partials/flash.ejs')%>
+
+
+        
+            <%if(products.length){%>
+                <%products.forEach(product=>{%>
+
+                    <a href="/bike/<%= product.id %>" class="card-link">
+                        <div class="practice">
+                            <img class="cardimg" src="<%= product.image %>" alt="" >
+                            <div class="container">
+                                <h4 class="cardh4"><b><%= product.title %></b></h4>
+                                <p class="newused"><%= product.condition %></p>  
+                                <hr>
+                                <p class="price">$<%= product.price %></p>
+                                <p class="offers"><%= product.totalOffers %> Offers</p>
+                            </div>
+                        </div>
+                    </a>
+
+                <%});
+            } else {%>
+                <p>There are no bikes to display.</p>
+            <%}%>
+        
+
+    </main>
+<%- include('../partials/footer.ejs')%>

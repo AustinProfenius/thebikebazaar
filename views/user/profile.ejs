@@ -1,0 +1,81 @@
+
+<%- include('../partials/header.ejs')%>
+    <link rel="stylesheet" href="/css/styleprofile.css">
+    <title>login</title>
+<%- include('../partials/nav.ejs')%>
+        <div class = "profile">
+            <%- include('../partials/flash.ejs')%>
+
+            <main>
+            <h2>Welcome, <%=user.firstName%></h2>
+
+            <h3>My Listings</h3>
+            <% if (products.length) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th class="status-column">Status</th>
+                            <th class="action-column">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% products.forEach(bike => { %>
+                            <tr>
+                                <td><a href="/bike/<%= bike.id %>"><%= bike.title %></a></td>
+                                <td><%= bike.active ? 'Active' : 'Inactive' %></td>
+                                <td>
+                                    <form method="GET" action="/bike/<%= bike.id %>/edit" class="form-inline">
+                                        <button type="submit" class="icon-button">
+                                            <img src="/images/icon-edit.png" alt="Edit" class="icon">
+                                        </button>
+                                    </form>
+                                    <form method="POST" action="/bike/<%= bike.id %>/?_method=DELETE" class="form-inline">
+                                        <button type="submit" class="icon-button">
+                                            <img src="/images/icon-trash.png" alt="Delete" class="icon">
+                                        </button>
+                                    </form>
+                                    <% if (bike.totalOffers > 0) { %>
+                                    <form method="GET" action="/bike/<%= bike.id %>/offer/" class="form-inline">
+                                        <button type="submit">
+                                            View Offers
+                                        </button>
+                                    </form>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p>You have not created any listings</p>
+            <% } %>
+
+
+            <h3>My Offers</h3>
+            <% if (offers.length) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th class="status-action-column">Status</th>
+                            <th class="status-action-column">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% offers.forEach(offer => { %>
+                            <tr>
+                                <td><a href="/bike/<%= offer.item %>"><%= offer.title %></a></td>
+                                <td><%= offer.status %></td>
+                                <td>$<%= offer.amount %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p>You have not made any offers</p>
+            <% } %>
+        </div>
+    </main>
+
+<%- include('../partials/footer.ejs')%>
