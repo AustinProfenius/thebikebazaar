@@ -8,16 +8,13 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-// MV8dibJC7Mudm4fR
 
 // create application
 const app = express();
 
 //configure app
-let port = 3000;
-let host = 'localhost';
-//let url = 'mongodb://localhost:27017/demos'; 
-const url = "mongodb+srv://pro162:MV8dibJC7Mudm4fR@cluster0.gnujpnt.mongodb.net/nbda-project3?retryWrites=true&w=majority&appName=Cluster0";
+let port = process.env.PORT || 3000;
+const url = process.env.MONGODB_URI || "mongodb+srv://pro162:MV8dibJC7Mudm4fR@cluster0.gnujpnt.mongodb.net/nbda-project3?retryWrites=true&w=majority&appName=Cluster0";
 
 app.set('view engine', 'ejs');
 
@@ -25,7 +22,7 @@ app.set('view engine', 'ejs');
 mongoose.connect(url)
 .then(()=>{
     //start the server
-    app.listen(port, host, ()=>{
+    app.listen(port, ()=>{
         console.log('server is up and running on port', port);
     });
 })
@@ -37,7 +34,7 @@ app.use(
         secret: "ajfeirf90aeu9eroejfoefj",
         resave: false,
         saveUninitialized: false,
-        store: new MongoStore({mongoUrl: 'mongodb://localhost:27017/demos'}),
+        store: new MongoStore({mongoUrl: url}),
         cookie: {maxAge: 60*60*1000}
         })
 );
